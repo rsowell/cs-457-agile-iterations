@@ -1,4 +1,4 @@
-# CHIP 10.5 ActionMap
+# Final Project:  ActionMap
 
 This README simply links to the instructions for this assignment.
 Review the [main `README`](../README.md) before following these in order.
