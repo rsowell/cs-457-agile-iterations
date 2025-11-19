@@ -1,4 +1,4 @@
-# Final Project:  ActionMap
+# Final Project:  Agile Iterations
 
 This README simply links to the instructions for this assignment.
 Review the [main `README`](../README.md) before following these in order.
