@@ -81,7 +81,7 @@ Protocols vary from team to team, but in general, it is good practice to have at
 
 ActionMap makes use of quite a bit of JavaScript. While you won't be writing much JS, we do need to make sure our system can complie and execute JavaScript.
 
-The Codio stack for this assignment comes with the following already installed, but if you're not using Codio, you will need to install these yourself:
+You will need to have the following installed:
 
 * nodejs (ideally, version 20 or higher)
   * `node` is a server-side JavaScript environment.
@@ -103,9 +103,9 @@ bundle config set without production
 bundle install
 ```
 
-If not using Codio, this step may take a while since some of the gems include Ruby extensions written in C that must be compiled as they are installed.
+This step may take a while since some of the gems include Ruby extensions written in C that must be compiled as they are installed.
 
-_Note:_ Because there are gems which use native compiled code, you may need additional build tools installed, like `cmake`. In Codio, these utilities should come preinstalled in your container. If you're working on your own system, you may need to install these tools.
+_Note:_ Because there are gems which use native compiled code, you may need additional build tools installed, like `cmake`. 
 
 Some dependencies for both Debian (Ubuntu), and macOS:
 
@@ -116,7 +116,7 @@ sudo apt install libgit2-dev cmake pkg-config
 brew install cmake pkg-config
 ```
 
-If you receive an installation error during `bundle install`, read the _entire_ message carefully. It should reference what dependencies are missing. Version and dependency management are on of the trickier parts of building software.
+If you receive an installation error during `bundle install`, read the _entire_ message carefully. It should reference what dependencies are missing. Version and dependency management are one of the trickier parts of building software.
 
 In the `package.json`, ensure you have a minimum version of node specified.
 
@@ -154,7 +154,7 @@ We're ready to run the app!
 Normally, we would run the app using
 
 ```shell
-bundle exec rails server -b 0.0.0.0
+bundle exec rails server 
 ```
 
 However, in this case, a downside of this option is that JavaScript-related changes may not be visible right after you make them. Essentially, when you change Rails app files, Rails knows to "reload" any changed Ruby classes on the very next request to your app; but because we're doing separate JavaScript package management with `npm`, the same isn't true for JavaScript, CSS, or other front-end files.
@@ -175,13 +175,13 @@ foreman start -f Procfile.dev
 
 ## Using Linters
 
-A linter is a program that analyzes source code for common errors and conformance to a coding style. The original [`lint` program](https://en.wikipedia.org/wiki/Lint) was written in C and checked C source code; today the term "linter" has come to be generalized to any program that does this task for a particular language or framework.
+A linter is a program that analyzes source code for common errors and conformance to a coding style. The original [`lint` program](https://en.wikipedia.org/wiki/Lint_(software)) was written in C and checked C source code; today the term "linter" has come to be generalized to any program that does this task for a particular language or framework.
 
 We have installed three linters in this project.
 
 * [rubocop](https://github.com/rubocop-hq/rubocop) checks Ruby code for common errors and stylistic problems; we provide a default configuration file [.rubocop.yml](../.rubocop.yml) telling it what to check for.
 * [eslint](https://eslint.org/) similarly uses [.eslintrc.js](../.eslintrc.js) to check for common errors and stylistic problems in JavaScript.
-* Finally, [haml-lint](https://github.com/sds/haml-lint) finds potential problems with [Haml](haml.info), a very compact markup language that generates HTML. This project uses `html.haml` files in `app/views` rather than `.html.erb`, because Haml is supported by more programming languages (including Java, JavaScript and PHP) and frameworks, whereas `.erb` is specific to Ruby. This makes it easier for non-Ruby developers to work with the codebase. [.haml-lint.yml](../.haml-lint.yml) is its configuration file.
+* Finally, [haml-lint](https://github.com/sds/haml-lint) finds potential problems with [Haml](https://haml.info/), a very compact markup language that generates HTML. This project uses `html.haml` files in `app/views` rather than `.html.erb`, because Haml is supported by more programming languages (including Java, JavaScript, and PHP) and frameworks, whereas `.erb` is specific to Ruby. This makes it easier for non-Ruby developers to work with the codebase. [.haml-lint.yml](../.haml-lint.yml) is its configuration file.
 
 You can manually run these linters:
 
