@@ -19,23 +19,9 @@ Here goes.
 
 # Get the Code
 
-## Starter Code Repo
-
-The started repo is [`saasbook/hw-agile-iterations`][repo] on GitHub. If you are working individually, or doing the assignment on your own, you should first [make your own copy][template_url], then clone that repo.
-
-[repo]: https://github.com/saasbook/hw-agile-iterations
-[template_url]: https://github.com/new?template_name=hw-agile-iterations&template_owner=saasbook
-
-e.g.
-
-```sh
-# Replace with your own repo:
-git clone git@github.com:saasbook/hw-agile-iterations.git actionmap
-```
-
 ## Initial Setup (Do now)
 
-Similarly to previous CHIPS, your team has been added to a `fa25-chips-10.5-<xx>` repo where the `<xx>` is replaced by your team's number. What's different this time around is that instead of only one member being in charge of making PRs to the repo, you will all be responsible for maintaining the repo together. Start by cloning in the repo using:
+Once you accept the assignment on GitHub Classroom, your team will be added to a `fa25-chips-10.5-<xx>` repo where the `<xx>` is replaced by your team's name. What's different this time around is that instead of only one member being in charge of making PRs to the repo, you will all be responsible for maintaining the repo together. Start by cloning in the repo using:
 
  ```sh
  git clone git@github.com:cs169/fa25-chips-10.5-<xx>.git actionmap
