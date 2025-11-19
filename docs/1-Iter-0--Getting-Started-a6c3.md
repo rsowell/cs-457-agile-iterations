@@ -21,17 +21,17 @@ Here goes.
 
 ## Initial Setup (Do now)
 
-Once you accept the assignment on GitHub Classroom, your team will be added to a `fa25-chips-10.5-<xx>` repo where the `<xx>` is replaced by your team's name. What's different this time around is that instead of only one member being in charge of making PRs to the repo, you will all be responsible for maintaining the repo together. Start by cloning in the repo using:
+Once you accept the assignment on GitHub Classroom, your team will be added to an `agile-iterations-<team>` repo where the `<team>` is replaced by your team's name. You will all be responsible for maintaining the repo together. Start by cloning in the repo using:
 
  ```sh
- git clone git@github.com:cs169/fa25-chips-10.5-<xx>.git actionmap
+ git clone https://github.com/sewanee-cs/agile-iterations-<team>.git actionmap
  ```
 
 You may notice, this is an empty repo. Uh, oh! Let's add an `upstream` remote to fetch the starter code. Having an `upstream` remote in git allows us to easily pull in code from a "parent" like repository in case it changes.
 
 ```sh
 cd actionmap
-git remote add upstream git@github.com:saasbook/hw-agile-iterations.git
+git remote add upstream https://github.com/rsowell/cs-457-agile-iterations
 ```
 
 *Note:* This step adds the remote only to your local checkout. **Each** team member will want to have an upstream remote if they want to pull in changes.
@@ -65,15 +65,15 @@ git push origin
 
 Once you've finished a story or feature, it's time to get your changes on the main branch of your GitHub repo through a Pull Request (PR). This can be done directly through the GitHub site by clicking the "X branches" button near the top of the repo page.
 
-![](.guides/img/branches.png)
+![](img/branches.png)
 
 From here, find your branch and click `New pull request`.
 
-![](.guides/img/open_pr.png)
+![](img/open_pr.png)
 
 Now make sure that the base branch is `main` and that the compare branch is your own. Then add a title and a description of the changes you've made as well as any other info that you'd like your team to know about your PR. Once you create the PR, let your teammates know so that they can check out the changes and approve the PR.
 
-![](.guides/img/create_pr.png)
+![](img/create_pr.png)
 
 Protocols vary from team to team, but in general, it is good practice to have at least 1 or 2 teammates review your changes to ensure that no bugs creep through to the merge. Once the reviews are in, all comments addressed, and any potential merge conflicts are resolved, you can merge in your changes!
 
