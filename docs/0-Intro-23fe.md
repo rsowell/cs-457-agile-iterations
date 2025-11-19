@@ -24,7 +24,7 @@ In this multi-part assignment you will do some prep work followed by two iterati
 
 ## The App and the Project
 
-A major difference between this project and earlier CHIPS is that there will be very little hand-holding. We’ll start you off with some legacy code, which will be a basic Rails app with a few models already implemented. The app uses an external API (Google Civic Information), JavaScript code to render the maps, and an asset pipeline (Webpacker) that manages all the front-end files.
+A major difference between this project and earlier ones is that there will be very little hand-holding. We’ll start you off with some legacy code, which will be a basic Rails app with a few models already implemented. The app uses an external API (Google Civic Information), JavaScript code to render the maps, and an asset pipeline (Webpacker) that manages all the front-end files.
 
 Another important part: testing! Throughout this whole project, you’ll be expected to add tests where you see fit, leveraging both BDD with Cucumber and Capybara, as well as TDD with RSpec. When it comes to stubbing external APIs (a big portion of this project), we’ll give you some extra tips on how to do so.
 
