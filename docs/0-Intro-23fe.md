@@ -1,6 +1,6 @@
-# CHIP 10.5: Agile Iterations
+# Final Project: Agile Iterations
 
-Welcome to CHIP 10.5!
+Welcome to the Final Project!
 
 The goal of this assignment is to experience a small-scale version of real agile software development as it is typically practiced in industry. In particular:
 
@@ -14,7 +14,7 @@ The goal of this assignment is to experience a small-scale version of real agile
 
 In this multi-part assignment you will do some prep work followed by two iterations.
 
-**In Iteration 0 (prep work)** you will get the existing app running in each developer's environment and set up the infrastructure for team development (repos, deployment, CI, and so on). The existing codebase is a nontrivial full-stack app called ActionMaps that lets users learn more about their elected and appointed government representatives, learn about political events in their local area, and aggregate, share and view news items in their local area.
+**In Iteration 0 (prep work)** you will get the existing app running in each developer's environment and set up the infrastructure for team development (repos, deployment, CI, and so on). The existing codebase is a nontrivial full-stack app called ActionMap that lets users learn more about their elected and appointed government representatives, learn about political events in their local area, and aggregate, share and view news items in their local area.
 
 **In Iteration 1,** all teams will add the same basic subset of features to the app, using the agile/XP workflow based on user stories, BDD/TDD, and lo-fi mockups. You will continue to improve test coverage and code quality in a 'legacy' code base.
 
