@@ -186,7 +186,7 @@ Finally, open `coverage/index.html` and look for the percentage next to "All Fil
 
 ## Iteration 1 Deliverables
 
-Woo! You made it, hope you are enjoying the ride so far. 
+Woo! You made it, hope you are enjoying the ride so far. Please check Brightspace for information on your deliverables.
 
 For each iteration you should have:
 
