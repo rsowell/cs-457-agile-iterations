@@ -22,20 +22,18 @@ Rails provides us two ways of managing our secrets.
 
 ### Encrypted Credientials (Option 1)
 
-Some frameworks and web services (e.g. GitHub) provide support for managing certain types of secrets. Rails 5 provides a built-in mechanism, `config/credentials.yml.enc`. This file contains all the secrets needed by the app, but it is stored as an encrypted file; the decryption key is then managed as a single "master key" by adding it to GitHub (for CI) and to Heroku (for production).
+Some frameworks and web services (e.g. GitHub) provide support for managing certain types of secrets. Rails provides a built-in mechanism, `config/credentials.yml.enc`. This file contains all the secrets needed by the app, but it is stored as an encrypted file; the decryption key is then managed as a single "master key" by adding it to GitHub (for CI) and to Heroku (for production).
 
 **These steps should be done on one copy of the repo, then the results pushed and everyone else pull.**
 
 Start by deleting the current `config/credentials.yml.enc`, if one exists, since we're about to replace it by generating a new "master key" and a new credentials file:
 
 ```shell
-EDITOR=vim bundle exec rails credentials:edit
-
-# If working locally and you have VSCode:
+# If you are using VSCode:
 EDITOR='code --wait' bundle exec rails credentials:edit
 ```
 
-(If you don't like `vim`, substitute your favorite editor, such as `nano`. Using `nano` on Codio can be tricky, because the Ctrl+O shortcut to save the file is captured by Codio; try Ctrl+X to close the editor and answering `Y` when prompted.) [Save the file and exit vim](https://www.google.com/search?q=how+to+save+and+exit+vim).
+(If you don't like `code`, substitute your favorite editor, such as `vim` or `nano`.) 
 
 This creates a new encryption key stored in the file `master.key` and a new credentials file.
 
@@ -60,7 +58,7 @@ development:
     GOOGLE_CLIENT_SECRET: xxx
 ```
 
-Then use the following syntax to read keys for specific environment:
+Then use the following syntax to read keys for a specific environment:
 
 ```ruby
 Rails.application.credentials.dig(:production, :GOOGLE_CLIENT_ID)
@@ -110,7 +108,7 @@ ENV('GOOGLE_CLIENT_ID', 'default_value')
 ENV('GOOGLE_CLIENT_SECRET', 'default_value')
 ```
 
-`.env` files are very simple to use and edit. However, because they are not committed they require coorindation amongst your team and you deployment environment.
+`.env` files are very simple to use and edit. However, because they are not committed they require coorindation amongst your team and your deployment environment.
 
 Your team should pick __only one__ approach to managing secrets in your application.
 
@@ -118,22 +116,11 @@ Your team should pick __only one__ approach to managing secrets in your applicat
 
 Now we need to setup the app on Heroku and ensure that our credentials are available there. Again, this should be done by one person on behalf of the team.
 
-If you're not using our prebuilt Codio stack, you'll need to install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
+If you have not done so already, you'll need to install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
 
-1. The steps below should work even though you're reusing your team's Heroku app from earlier assignments. If you're having trouble, try force-pushing to the Heroku remote, deleting and re-adding your Postgres add-on manually, or, if all else fails, asking course staff to reset your Heroku application entirely.
-2. Log in to Heroku CLI using `heroku login -i` using your API key as your password.
-3. Run the following commands to connect your local repo to your heroku app, replacing `<xx>` with your team number:
-
-```sh
-heroku teams
-heroku apps -t esaas # list the apps you have access to.
-heroku apps:favorites:add -a fa25-team-<xx>
-heroku git:remote -a fa25-team-<xx>
-```
-
-(If you've properly set the stack from an earlier assignment, you may not need to redo the last step.)
-
-4. Heroku's stacks are called _buildpacks_, and since our app uses Node, we need to tell Heroku to use buildpacks containing both Node and Ruby:
+1. Log in to Heroku CLI using `heroku login`.
+2. While in the root directory of your project, type `heroku create` to create a new project in Heroku. This will tell the Heroku service to prepare for some incoming code, and locally it will add a remote git repository for you called `heroku`.
+3. Heroku's stacks are called _buildpacks_, and since our app uses Node, we need to tell Heroku to use buildpacks containing both Node and Ruby:
 
 ```shell
 heroku buildpacks:add heroku/nodejs
@@ -146,38 +133,29 @@ Confirm that you have both installed, and **make sure they are listed in the ord
 heroku buildpacks
 ```
 
-If the buildpacks are not in the right order (which may happen because a previous CHIP already added `heroku/ruby`), you can use `heroku buildpacks:remove` to remove a pack before adding it again.
+If the buildpacks are not in the right order, you can use `heroku buildpacks:remove` to remove a pack before adding it again.
 
-5. Before you push to Heroku, make sure your changes get put on the main branch of your team's repo. Follow the `PR once you've finished your part (For future reference)` section on the previous page. Once your changes are merged into the main branch of your GitHub repo. Run the following commands to pull in the changes into your local/Codio main branch.
+5. Before you push to Heroku, make sure your changes get put on the main branch of your team's repo. Follow the `PR once you've finished your part (For future reference)` section on the previous page. Once your changes are merged into the main branch of your GitHub repo. Run the following commands to pull in the changes into your local main branch.
 
 ```
 git checkout main
 git pull origin main
 ```
 
-6. You're now ready to push your . Note that `.gitignore` includes the master key file `config/master.key`, since that secret should **not** be checked in to version control. Instead we will make the secret available to Heroku in a separate manual step.
+6. You're now ready to push to heroku. Note that `.gitignore` includes the master key file `config/master.key`, since that secret should **not** be checked in to version control. Instead we will make the secret available to Heroku in a separate manual step.
 
 ```shell
-git push heroku main # you may need --force as well if this is the first push from your 10.5 repository
+git push heroku main # you may need --force as well if this is the first push from your repository
 ```
 
 7. Next, setup the initial database on Heroku:
 
 ```shell
+heroku addons:create heroku-postgresql:essential-0
 heroku run rails db:prepare
 ```
 
-**NOTE:** If you have previously deployed a Rails app to this Heroku container, you will want to remove and recreate the debase.
-
-```shell
-# First, remove the current database
-heroku addons:destroy heroku-postgresql
-
-# Then add a new one
-heroku addons:create heroku-postgresql
-```
-
-You should now be able to access your app using the _(appname)_`.herokuapp.com` that you set up in the previous step.
+You should now be able to access your app using the _(appname)_`.herokuapp.com`.
 
 
 8. Run the following command to make `config/credentials.yml.enc` available on Heroku:
@@ -190,7 +168,7 @@ This incantation echoes the contents of `config/master.key` in your local termin
 
 ## Add GitHub, Google, and Geocodio API keys
 
-Now you need to update the `credentials.yml.enc` using `EDITOR=vim bundle exec rails credentials:edit` because the app includes "login with your Google account" and "login with GitHub", both of which require API keys, and also uses the Google Civic Information API, which requires a different API key. (Again, only one person on the team should do this step, then they should check in the credentials file for everyone else to update from.)
+Now you need to update the `credentials.yml.enc` using `EDITOR='code --wait' bundle exec rails credentials:edit` because the app includes "login with your Google account" and "login with GitHub", both of which require API keys, and also uses the Google Civic Information API, which requires a different API key. (Again, only one person on the team should do this step, then they should check in the credentials file for everyone else to update from.)
 
 1. Go to [console.developers.google.com](https://console.developers.google.com), create a new project, click on `Credentials`, then add new `OAuth 2.0 Client IDs` for a web application. Copy the `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` and add them to your `credentials.yml.enc`. Make sure to set your callback/redirect url on the Google Developer Console using your Heroku link, e.g. `https://your-heroku-1234.herokuapp.com/auth/google_oauth2/callback`.
 
@@ -246,18 +224,18 @@ To keep track of your issues while you work on your project, GitHub Projects pro
 ### Add a GitHub project to your repo
 
 1. Open your repo in GitHub
-2. In “Projects”, click on “New project” (not “Link a Project”) and, when asked for a template in the left column, select “\[TEMPLATE\] 10.5 Backlog Template”
+2. In “Projects”, click on “New project” (not “Link a Project”) and, when asked for a template in the left column, select “Kanban”
 
 ### Understand your GitHub project
 
 Now that you successfully added a project to your repository, you can start creating issues!
 
-- New/Ice Box: all unprioritized issues
-- Todo: prioritized issues (you’re going to do the work)
+- Backlog: all unprioritized issues
+- Ready: prioritized issues (you’re going to do the work)
 - In Progress: issues in progress
 - In Review: issues pending review from your teammates (make sure you make a PR\!)
 - Done: issues you finished working on
 
 # Deliverables
 
-There is **no direct deliverable** for iteration 0. You will need to complete this iteration (and potentially refer back to it) before starting iteration 1, however. Your course staff may verify that you've completed these steps before grading iteration 1.
+There is **no direct deliverable** for iteration 0. You will need to complete this iteration (and potentially refer back to it) before starting iteration 1, however. 
