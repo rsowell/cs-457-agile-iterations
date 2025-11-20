@@ -77,7 +77,7 @@ You don't need to submit evidence of this meeting, but we _promise_ your dev pro
 3. `Code and tests`
 
     * Your instructor will evaluate your project by interacting with the features for Delivered stories (on the deployed Heroku app) and inspect code, tests, etc. for Finished stories. The goal is to be able to _Deliver_ all the stories you planned, but the goal is not to punish your team for failing to do so but rather to help your team understand what could have gone better so that next iteration will go more smoothly.
-    * Your code coverage is 50% or higher (for app/ folder). For Iteration 1 you will need 45% coverage and by Iteration 2 you should have 50% or higher code coverage.
+    * Your code coverage is 50% or higher (for app/ folder). For Iteration 1 you will need 50% coverage and by Iteration 2 you should have 75% or higher code coverage.
 
 Your instructor may apply grade adjustments based on the quality of your stories, interaction within team, GitHub Pull Requests, and so on. Remember, that the goal is a healthy development process and team communication.
 
