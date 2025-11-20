@@ -45,7 +45,7 @@ git status
 git checkout main
 git fetch upstream
 git reset --hard upstream/main
-git push origin main
+git push origin main -f
 ```
 
 _Ideally_, we'd make a separate branch, then a pull request, then merge that branch. However, for the very _first_ commit, whatever branch we push to GitHub becomes the 'default' one.
