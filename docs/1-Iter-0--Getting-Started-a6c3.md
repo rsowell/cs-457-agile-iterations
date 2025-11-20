@@ -42,9 +42,9 @@ Now, let's sync the changes and push them to our team's repository. This only ne
 cd actionmap
 git status
 # verify you are on main and it is empty.
-git checkout
+git checkout main
 git fetch upstream
-git pull upstream/main
+git reset --hard upstream/main
 git push origin main
 ```
 
