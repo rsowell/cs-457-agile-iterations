@@ -26,8 +26,6 @@ A good rule of thumb is that if a developer or pair can generally describe in pl
 
 **The planning step is extremely important.** If you can't get to specifics at the time you're assigning a 1-point story, chances are you won't be able to get to specifics when you sit down to code either.  This "translation" step has to happen at some point, so why not do it when the whole team is available to discuss and help?
 
-You will report on how this meeting went using the checklist assignment found on Gradescope (and linked in the next page of this guide).
-
 ## Create Issues for the stories
 
 Each 1-point story should be entered as a GitHub Issue. Label each issue with "iter1" or "iter2" depending on which project iteration it is for.
@@ -42,7 +40,7 @@ When a developer or pair claims an issue to work on:
 
 4. Either create a new Cucumber feature file, or if appropriate, add a scenario in an existing file, for the issue you're working on. You should write out all scenarios for that user story as we have done in class. Also write draft step definitions for all of the new steps that you are using, even if they are just placeholders for now. If you’re updating an existing feature, you can just edit the feature file(s) for that feature.
 
-5. Use BDD to develop the feature, as in CHIPS 7.7.
+5. Use BDD to develop the feature, as in Project 6.
 
 6. When committing, specify the commit type (from [this list](https://github.com/commitizen/conventional-commit-types/blob/master/index.json)) at the beginning of the commit message with "[]". For example, a commit message will look like "[feat] A new feature that....(description here)".
 
@@ -54,12 +52,12 @@ GitHub has a feature called "Project Boards", which work a lot like Pivotal Trac
 
 1. Navigate to your repo on GitHub and find the link which says "Projects".
 2. Click the **dropdown** in the big green button, choosing "New Project". **Do not** click "Link a Project" directly (this will take ownership over the template!)
-3. You should make a project from a _template_, in the column on the left. This includes all the automation to move stories to the right state as you open and close PRs. Select "[TEMPLATE] 10.5 Backlog Template" as the template to use.
-4. Give your project board an appropriate name, like "Team <XX> CHIPS 10.5 Project"
+3. You should make a project from a _template_, in the column on the left. This includes all the automation to move stories to the right state as you open and close PRs. Select "Kanban" as the template to use.
+4. Give your project board an appropriate name, like "Team <Name> Final Project"
 
 ## Standups
 
-**In every offering of this course we have taught,** the major student feedback on lessons learned from the group project was "I wish our team had communicated more frequently and more regularly."
+The most common student feedback on lessons learned from a group software engineering project is "I wish our team had communicated more frequently and more regularly."
 
 Our recommended workflow: every day (or as close to every day as possible), meet with your teammates as a group in a simple video call for just a few minutes. The meeting can follow this simple script, where each developer takes turns answering the questions:
 
@@ -74,13 +72,13 @@ You don't need to submit evidence of this meeting, but we _promise_ your dev pro
 1. `Retrospective survey` (1 per team): Comparing your planned iteration work with the stories actually Finished or Delivered, what could your team have done better?
 
 
-2. `Peer evaluation survey` (each developer submits): We will ask you to evaluate the overall contributions of each team member during the iteration—exceeds expectations, meets expectations, somewhat/barely meet expectations, or fall short of expectations. (Consider a variety of factors: did this person communicate with rest of team effectively?  Did they try to do their share of the work? Were they prepared to work on the project, that is, did they seem to have command of the material covered in the homework?) These surveys are confidential to instructors only. We use this information to help with project grading, so please be honest and fair!
+2. `Peer evaluation survey` (each developer submits): We will ask you to evaluate the overall contributions of each team member during the iteration—exceeds expectations, meets expectations, somewhat/barely meet expectations, or fall short of expectations. (Consider a variety of factors: did this person communicate with rest of team effectively?  Did they try to do their share of the work? Were they prepared to work on the project, that is, did they seem to have command of the material covered in the class?) These surveys are confidential. We use this information to help with project grading, so please be honest and fair!
 
 3. `Code and tests`
 
-    * Your TAs will evaluate your project by interacting with the features for Delivered stories (on the deployed Heroku app) and inspect code, tests, etc. for Finished stories. The goal is to be able to _Deliver_ all the stories you planned, but the goal is not to punish your team for failing to do so but rather to help your team understand what could have gone better so that next iteration will go more smoothly.
+    * Your instructor will evaluate your project by interacting with the features for Delivered stories (on the deployed Heroku app) and inspect code, tests, etc. for Finished stories. The goal is to be able to _Deliver_ all the stories you planned, but the goal is not to punish your team for failing to do so but rather to help your team understand what could have gone better so that next iteration will go more smoothly.
     * Your code coverage is 50% or higher (for app/ folder). For Iteration 1 you will need 45% coverage and by Iteration 2 you should have 50% or higher code coverage.
 
-Your TAs may apply grade adjustments based on the quality of your stories, interaction within team, GitHub Pull Requests, and so on. Remember, that the goal is a healthy development process and team communication.
+Your instructor may apply grade adjustments based on the quality of your stories, interaction within team, GitHub Pull Requests, and so on. Remember, that the goal is a healthy development process and team communication.
 
 **Next, continue with Iteration 1 specs and deliverables.**
