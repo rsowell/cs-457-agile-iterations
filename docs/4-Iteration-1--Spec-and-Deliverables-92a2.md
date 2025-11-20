@@ -8,7 +8,7 @@ ActionMap's goal is to be an integrated, seamless, and shareable platform that m
 
 To render the maps, this project uses a combination of JavaScript and [Topojson](https://github.com/topojson/topojson-specification), a compact alternative to [GeoJSON](https://tools.ietf.org/html/rfc7946). These file formats are both used to represent simple geographical features.
 
-You will find prebuilt Topojson files in `assets/topojson`, but we need the JavaScript `d3.js` library to render the maps as SVG images. This library is fetched using `npm` from `npmjs.com`, the package manager for JavaScript code. In addition, we use the `jsbundling-rails` gem (which wraps the Webpack front-end build tool) to compile JavaScript its dependencies. You will find the compiled JavaScript that renders the browser in `app/assets/builds/`. Why do we 'compile' our JavaScript code? This helps us create modular files which are less likely to have dependency conflicts. Combining dependencies into fewer total files also helps us manage the total number of individual requests made to load a page, which improves performance.
+You will find prebuilt Topojson files in `assets/topojson`, but we need the JavaScript `d3.js` library to render the maps as SVG images. This library is fetched using `npm` from `npmjs.com`, the package manager for JavaScript code. In addition, we use the `jsbundling-rails` gem (which wraps the Webpack front-end build tool) to compile JavaScript dependencies. You will find the compiled JavaScript that renders the browser in `app/assets/builds/`. Why do we 'compile' our JavaScript code? This helps us create modular files which are less likely to have dependency conflicts. Combining dependencies into fewer total files also helps us manage the total number of individual requests made to load a page, which improves performance.
 
 We also use JQuery to listen and react to DOM events eg. when a form value changes. Open the `/events` path on your browser and assess how the `Filter By` form works. What JavaScript file handles the changes in the form?
 
@@ -46,7 +46,7 @@ _OCDID_ is an ['Open Civic Division ID'](https://github.com/opencivicdata/ocd-di
 **TASK 1.1**: Refactoring Legacy Code
 
 * There is currently an issue with the way the `civic_api_to_representative_params` method in the `Representative` model is implemented.
- * Explore the code further to understand the functionality surrounding the method, and build and understanding as to what the error may be. **HINT:** What happens if the method is called for a given representative who _already exists_ in the database?
+ * Explore the code further to understand the functionality surrounding the method, and build an understanding as to what the error may be. **HINT:** What happens if the method is called for a given representative who _already exists_ in the database?
  * Write a characterization test to encapsulate your understanding, and modify the code to allow the test to pass. (Remember Red->Green->Refactor; your test should fail before you implement a fix).
  * Consider what unique ids are returned from the API that will help us with avoiding duplicate data?
 
@@ -54,9 +54,7 @@ After completing this step, you may want to purge and re-initialize your databas
 
 Here's a recommended set of actions, but you should make sure you understand what each line does before continuing.
 
-What does `db:prepare` do? Consult the [Rails docs][db_prepare].
-[db_prepare]: https://guides.rubyonrails.org/active_record_migrations.html#setting-up-the-database
-
+What does `db:prepare` do? Consult the [Rails docs (db:prepare)](https://guides.rubyonrails.org/active_record_migrations.html#setting-up-the-database).
 ```bash
 bundle exec rails db:drop
 bundle exec rails db:prepare
@@ -67,8 +65,8 @@ On Heroku, you may find it easier to simply replace your database instance. Hero
 **Be sure to communicate with your team before making disruptive data changes on Heroku.**
 
 ```bash
-heroku addons:destroy heroku-postgresql -a <YOUR_APP_NAME>
-heroku addons:create heroku-postgresql -a <YOUR_APP_NAME>
+heroku addons:destroy heroku-postgresql:essential-0 
+heroku addons:create heroku-postgresql:essential-0 
 heroku run rails db:prepare
 ```
 
@@ -105,13 +103,11 @@ Understanding this will make the next task much easier.
 The map is broken! You can click on a state, and it’ll show you a list of counties, but clicking on a county takes you to a search page. And then, there's no obvious way to get back to the previous state. We think the 'county' view should be a lot more useful.
 
 - Clicking on a county should show you the map, which it does.
-- [ ] When on the state page, clicking on a county should take you to the _county show route_ for that state, not the search page.
-- [ ] Below the map, it should show the list of representatives for that county.
-- [ ] Include a link when on a county page that links back to the state. e.g. when viewing 'Alameda County', there should be a link somewhere near the top of the map which takes you back to the 'California' map page. You can figure out how to make this look best.
+- When on the state page, clicking on a county should take you to the _county show route_ for that state, not the search page.
+- Below the map, it should show the list of representatives for that county.
+- Include a link when on a county page that links back to the state. e.g., when viewing 'Franklin County', there should be a link somewhere near the top of the map which takes you back to the 'Tennessee' map page. You can figure out how to make this look best.
 
-This doesn’t require a lot of code changes, but does require you to use a mix of your basic JavaScript knowledge and creativity. You'll need to make some small fixes to the JavaScript, but more importantly, you'll need
-
-Ensure you are also writing proper tests in Cucumber and Rspec for map actions. We've provided some scaffolded steps.
+This doesn’t require a lot of code changes, but does require you to use a mix of your basic JavaScript knowledge and creativity. You'll need to make some small fixes to the JavaScript, but more importantly, you'll need to ensure you are also writing proper tests in Cucumber and Rspec for map actions. We've provided some scaffolded steps.
 
 **TASK 1.3**: Make the Map Functional!
 
@@ -125,19 +121,19 @@ This project uses [axe-core](https://github.com/dequelabs/axe-core) for automate
 
 **TASK 1.4**: Add accessibility tests for at least two different routes:
 
-The two routes must be different, i.e. testing both "CA" and "TX" would not really improve the robustness of our app.
+The two routes must be different, i.e. testing both "TN" and "TX" would not really improve the robustness of our app.
 
 1. Open `features/accessibility.feature` and add scenarios for **two** critical user paths. For example:
 
 ```cucumber
 Scenario: State map page is accessible
-  Given I am on the state map page for "CA"
+  Given I am on the state map page for "TN"
   Then the page should be axe clean
 ```
 
 You may pick any two routes you wish. In iteration 2, you'll need to add an additional 2 routes to this file. (These tests will also help contribute to your overall test coverage.)
 
-When we run the step `Then the page should be axe clean`, we audit the HTML of whatever is currently in view in the browser. In this case, consider what happens if expand (or hide) the counties table on the state page. You might get different results!
+When we run the step `Then the page should be axe clean`, we audit the HTML of whatever is currently in view in the browser. In this case, consider what happens if you expand (or hide) the counties table on the state page. You might get different results!
 
 
 2. Run the accessibility tests:
@@ -158,8 +154,8 @@ bundle exec cucumber -p a11y
 ## Iteration 1, Part 5: Improving Coverage
 
 
-**TASK 1.5**: Ensure test coverage exceed 50% across all files in the `app/` directory.
-The started code should have come with around 20% test coverage. Depending on how much code you'd added, you should be well on your way to dramatically improving test coverage.
+**TASK 1.5**: Ensure test coverage exceeds 50% across all files in the `app/` directory.
+The starter code should have come with around 20% test coverage. Depending on how much code you'd added, you should be well on your way to dramatically improving test coverage.
 
 You can use `simplecov` locally to see your coverage. SimpleCov is already enabled in the project for RSpec and Cucumber tests, but you need to instruct SimpleCov to ignore the `lib/` folder, which contains library code that isn't your responsibility to cover.
 
@@ -190,7 +186,7 @@ Finally, open `coverage/index.html` and look for the percentage next to "All Fil
 
 ## Iteration 1 Deliverables
 
-Woo! You made it, hope you are enjoying the ride so far. Please check your course's webpage for information on your deliverables.
+Woo! You made it, hope you are enjoying the ride so far. 
 
 For each iteration you should have:
 
