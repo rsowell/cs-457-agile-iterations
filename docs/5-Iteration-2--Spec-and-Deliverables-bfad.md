@@ -28,7 +28,7 @@ Secrets management will play an important role here (similar to how we set up th
 
 ### Option 1: News API
 
-Your second option for this task is to use the News API to pre-populate a list of news articles that the user can choose from to rate for a particular representative.  News API is a site that provides a "front end" API to various news sources on the Web.
+One option for this task is to use the News API to pre-populate a list of news articles that the user can choose from to rate for a particular representative.  News API is a site that provides a "front end" API to various news sources on the Web.
 
 Here is the [Google feed for News API.](https://newsapi.org/s/google-news-api)
 
@@ -37,11 +37,11 @@ Here is the [Google feed for News API.](https://newsapi.org/s/google-news-api)
 * **TASK 2.4**: A user should be able to select a radio button for their desired article, rate it, and hit the `Save` button to add it to the database.
 * **TASK 2.5**: See below for a lo-fi mockup. Text in `blue` is user input, and in `red` are notes.
 
-![](.guides/img/news_item_render.jpg)
+![](img/news_item_render.jpg)
 
 ### Option 2: Congress.gov API
 
-In this task you will explore adding an functionality to search congress.gov for various bills. Take a look at [api.congress.giv](https://api.congress.gov) and `lib/congress-api.rb`. There is a [very helpful GitHub repository](https://github.com/LibraryOfCongress/api.congress.gov/blob/main/Documentation/BillEndpoint.md) for the API.
+In this task you will explore adding a functionality to search congress.gov for various bills. Take a look at [api.congress.gov](https://api.congress.gov) and `lib/congress-api.rb`. There is a [very helpful GitHub repository](https://github.com/LibraryOfCongress/api.congress.gov/blob/main/Documentation/BillEndpoint.md) for the API.
 
 
 Before you begin, you'll need to sign up for an API key. Save the credentials in your app as `CONGRESS_GOV_API_KEY`. (Review iteration 1.)
@@ -78,7 +78,7 @@ To get started using the API we need to do a few things:
 * Add `gem 'faraday_middleware'` to the Gemfile and reinstall all dependencies.
 * Create a space to call the API, in that file you will need to use `require_relative '../lib/congress-api'`
   * **Note:** You'll need to make sure this base is correctly updated relative to whatever file you are using.
-  * Typically you include this line right at the top, outside of an `class` definitions.
+  * Typically you include this line right at the top, outside of any `class` definitions.
 * Call and test the API:
 
 ```rb
@@ -92,20 +92,20 @@ The API we've provided returns JSON results, but it's by no means complete. Feel
 
 ## Iteration 2, Part 3—Improve Accessibility Testing
 
- Add accessibility tests for at least two different routes, or two substantially different views of the same route. For this iteration, these should be routes that you have added modified during part of this iteration.
+ Add accessibility tests for at least two different routes, or two substantially different views of the same route. For this iteration, these should be routes that you have added or modified during previous parts of this iteration.
 
 
-1. Open `features/accessibility.feature` and add scenarios for **two** critical user paths. For example:
+1. Open `features/accessibility.feature` and add scenarios for **two** more critical user paths. For example:
 
 ```cucumber
 Scenario: State map page is accessible
-  Given I am on the state map page for "CA"
+  Given I am on the state map page for "TN"
   Then the page should be axe clean
 ```
 
-You may pick any two routes you wish. In iteration 2, you'll need to add an additional 2 routes to this file. (These tests will also help contribute to your overall test coverage.)
+You may pick any two routes you wish. (These tests will also help contribute to your overall test coverage.)
 
-When we run the step `Then the page should be axe clean`, we audit the HTML of whatever is currently in view in the browser. In this case, consider what happens if expand (or hide) the counties table on the state page. You might get different results!
+When we run the step `Then the page should be axe clean`, we audit the HTML of whatever is currently in view in the browser. In this case, consider what happens if you expand (or hide) the counties table on the state page. You might get different results!
 
 
 2. Run the accessibility tests:
@@ -134,7 +134,7 @@ Same as before, but add _at least_ 2 cucumber scenarious for your features built
 
 _This section is optional and not required for a full grade on the project._
 
-If your team chooses to implement features discussed in this section, it may make up for small deficiencies in earlier parts of the assignment. You should only proceed to this section, however, if you have completed the other sections as described (e.g. by implementing the requested features and keeping test coverage high).
+If your team chooses to implement features discussed in this section, it may make up for small deficiencies in earlier parts of the assignment. You should only proceed to this section, however, if you have completed the other sections as described (e.g., by implementing the requested features and keeping test coverage high).
 
 As you were working on the prior tasks, the customer decided they want the app to include a way for users to rate articles.
 
@@ -142,11 +142,11 @@ As you were working on the prior tasks, the customer decided they want the app t
 
 A rating system is only as useful as the number of people giving a rating. Allow users to give an individual rating to an article and display the average rating for each article.
 
-## \[OPTIONAL\] Iteration 2, part 4 - Extending Bills Searching: Tracking Bills to Congress Members
+## \[OPTIONAL\] Iteration 2, Part 4 - Extending Bills Searching: Tracking Bills to Congress Members
 
 _This section is optional and not required for a full grade on the project._
 
-If your team chooses to implement features discussed in this section, it may make up for small deficiencies in earlier parts of the assignment. You should only proceed to this section, however, if you have completed the other sections as described (e.g. by implementing the requested features and keeping test coverage high).
+If your team chooses to implement features discussed in this section, it may make up for small deficiencies in earlier parts of the assignment. You should only proceed to this section, however, if you have completed the other sections as described (e.g., by implementing the requested features and keeping test coverage high).
 
 This feature will be open-ended. If you wish to complete this feature, you should create GitHub issues / pull requests explaining your design.
 
@@ -162,4 +162,4 @@ We've only begun to scaffold searching for bills. Implement the following two fe
 
 ## Iteration 2 Deliverables
 
-Congratulations on completing Iteration 2! Please check your course's website for information on your deliverables.
+Congratulations on completing Iteration 2! Please check Brightspace for information on your deliverables.
