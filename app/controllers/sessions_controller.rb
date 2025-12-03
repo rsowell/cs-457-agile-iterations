@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       create_session(:create_developer_user)
     when 'github'
       create_session(:create_github_user)
-    when 'google'
+    when 'google_oauth2'
       create_session(:create_google_user)
     end
   end
