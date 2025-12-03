@@ -82,7 +82,7 @@ At the end of this task, your Representative model should have the following col
 
 | Column Name | Notes |
 | ----------- | ----- |
-| addrress | one line for their entire address |
+| address | one line for their entire address |
 | photo_url | a profile picture returned by Geocodio |
 | website_url | their congressional website URL |
 | phone_number | congressional office number, from Geocodio |
