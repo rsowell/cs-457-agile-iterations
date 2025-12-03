@@ -174,9 +174,9 @@ Now you need to update the `credentials.yml.enc` using `EDITOR='code --wait' bun
 
 2. Go to [github.com/settings](https://github.com/settings), then navigate to Developer Settings and click on `OAuth apps` and add a new `OAuth App`. Copy the `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` and add them to your `credentials.yml.enc`. As before, use your Heroku link for the callback URL, e.g. `https://your-heroku-1234.herokuapp.com/auth/github/callback`.
 
-3. Get a [Geocodio][geocodi] API key. Create an account, then visit [the Geocodio API page][geocodio_api]. One person should create an API key and share it with the team.
+3. Get a [Geocodio][geocodio] API key. Create an account, then visit [the Geocodio API page][geocodio_api]. One person should create an API key and share it with the team.
 
-Geocodio is a free service with a very easy JSON API for looking up representatives by a location. We've taken care of the main work of setting up the API, but you'll need to pass in a `GEOCODIO_API_KEY`. [Check out their documentation][geocodio_docs].
+Geocodio is a free service with a very easy JSON API for looking up representatives by a location. We've taken care of the main work of setting up the API, but you'll need to pass in a `geocodio_api_key`. [Check out their documentation][geocodio_docs].
 
 [geocodio]: https://dash.geocod.io
 [geocodio_api]: https://dash.geocod.io/apikey
